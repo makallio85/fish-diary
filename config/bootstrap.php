@@ -38,6 +38,12 @@ if (!extension_loaded('mbstring')) {
  */
 require __DIR__ . '/paths.php';
 
+$Loader = new josegonzalez\Dotenv\Loader(ROOT . DS . 'config' . DS . '.env');
+// Parse the .env file
+$Loader->parse();
+// Send the parsed .env file to the $_ENV variable
+$Loader->toEnv();
+
 /*
  * Bootstrap CakePHP.
  *
@@ -220,3 +226,5 @@ Type::build('timestamp')
 if (Configure::read('debug')) {
     Plugin::load('DebugKit', ['bootstrap' => true]);
 }
+
+Plugin::load('BootstrapUI');

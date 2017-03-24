@@ -12,7 +12,7 @@
  * @since         3.3.0
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-namespace App\Test\TestCase;
+namespace FishDiary\Test\TestCase;
 
 use App\Application;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;

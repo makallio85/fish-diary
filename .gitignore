@@ -1,4 +1,11 @@
 /vendor/*
-/config/app.php
 /tmp/*
 /logs/*
+/bower_components/*
+.idea/
+composer.lock
+config/.env
+webroot/css/bootstrap/
+webroot/css/fonts/
+webroot/js/bootstrap/
+webroot/js/jquery/
