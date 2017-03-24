@@ -45,8 +45,8 @@ class FishTypesFixture extends TestFixture
         [
             'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-03-24 18:07:16',
-            'modified' => '2017-03-24 18:07:16'
+            'created' => '2017-03-24 19:04:00',
+            'modified' => '2017-03-24 19:04:00'
         ],
     ];
 }

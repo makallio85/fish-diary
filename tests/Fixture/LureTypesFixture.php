@@ -45,8 +45,8 @@ class LureTypesFixture extends TestFixture
         [
             'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-03-24 18:08:02',
-            'modified' => '2017-03-24 18:08:02'
+            'created' => '2017-03-24 19:03:16',
+            'modified' => '2017-03-24 19:03:16'
         ],
     ];
 }

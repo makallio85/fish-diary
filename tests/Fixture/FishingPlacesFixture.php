@@ -45,8 +45,8 @@ class FishingPlacesFixture extends TestFixture
         [
             'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-03-24 18:10:38',
-            'modified' => '2017-03-24 18:10:38'
+            'created' => '2017-03-24 19:03:37',
+            'modified' => '2017-03-24 19:03:37'
         ],
     ];
 }

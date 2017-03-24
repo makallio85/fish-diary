@@ -45,8 +45,8 @@ class WeatherTypesFixture extends TestFixture
         [
             'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-03-24 18:08:19',
-            'modified' => '2017-03-24 18:08:19'
+            'created' => '2017-03-24 19:02:49',
+            'modified' => '2017-03-24 19:02:49'
         ],
     ];
 }

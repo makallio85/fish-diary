@@ -20,6 +20,7 @@ class FishTypesControllerTest extends IntegrationTestCase
         'app.caught_fishes',
         'app.fishing_places',
         'app.lures',
+        'app.lure_types',
         'app.weather_types',
         'app.caught_fish_notes',
         'app.caught_fish'

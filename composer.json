@@ -10,7 +10,8 @@
     "cakephp/plugin-installer": "~1.0",
     "vlucas/phpdotenv": "^2.4",
     "josegonzalez/dotenv": "dev-master",
-    "friendsofcake/bootstrap-ui": "^1.0"
+    "friendsofcake/bootstrap-ui": "^1.0",
+    "josegonzalez/cakephp-upload": "^3.6"
   },
   "require-dev": {
     "psy/psysh": "@stable",

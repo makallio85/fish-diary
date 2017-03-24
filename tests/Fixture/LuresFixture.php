@@ -48,8 +48,8 @@ class LuresFixture extends TestFixture
             'id' => 1,
             'lure_type_id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
-            'created' => '2017-03-24 18:08:11',
-            'modified' => '2017-03-24 18:08:11'
+            'created' => '2017-03-24 19:03:04',
+            'modified' => '2017-03-24 19:03:04'
         ],
     ];
 }

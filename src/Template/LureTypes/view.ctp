@@ -1,66 +1,91 @@
 <?php
-/**
-  * @var \FishDiary\View\AppView $this
-  */
+$this->extend('../Layout/TwitterBootstrap/dashboard');
+
+
+$this->start('tb_actions');
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Lure Type'), ['action' => 'edit', $lureType->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Lure Type'), ['action' => 'delete', $lureType->id], ['confirm' => __('Are you sure you want to delete # {0}?', $lureType->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Lure Types'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Lure Type'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Lures'), ['controller' => 'Lures', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Lure'), ['controller' => 'Lures', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="lureTypes view large-9 medium-8 columns content">
-    <h3><?= h($lureType->name) ?></h3>
-    <table class="vertical-table">
+<li><?= $this->Html->link(__('Edit Lure Type'), ['action' => 'edit', $lureType->id]) ?> </li>
+<li><?= $this->Form->postLink(__('Delete Lure Type'), ['action' => 'delete', $lureType->id], ['confirm' => __('Are you sure you want to delete # {0}?', $lureType->id)]) ?> </li>
+<li><?= $this->Html->link(__('List Lure Types'), ['action' => 'index']) ?> </li>
+<li><?= $this->Html->link(__('New Lure Type'), ['action' => 'add']) ?> </li>
+<li><?= $this->Html->link(__('List Lures'), ['controller' => 'Lures', 'action' => 'index']) ?> </li>
+<li><?= $this->Html->link(__('New Lure'), ['controller' => 'Lures', 'action' => 'add']) ?> </li>
+<?php
+$this->end();
+
+$this->start('tb_sidebar');
+?>
+<ul class="nav nav-sidebar">
+<li><?= $this->Html->link(__('Edit Lure Type'), ['action' => 'edit', $lureType->id]) ?> </li>
+<li><?= $this->Form->postLink(__('Delete Lure Type'), ['action' => 'delete', $lureType->id], ['confirm' => __('Are you sure you want to delete # {0}?', $lureType->id)]) ?> </li>
+<li><?= $this->Html->link(__('List Lure Types'), ['action' => 'index']) ?> </li>
+<li><?= $this->Html->link(__('New Lure Type'), ['action' => 'add']) ?> </li>
+<li><?= $this->Html->link(__('List Lures'), ['controller' => 'Lures', 'action' => 'index']) ?> </li>
+<li><?= $this->Html->link(__('New Lure'), ['controller' => 'Lures', 'action' => 'add']) ?> </li>
+</ul>
+<?php
+$this->end();
+?>
+<div class="panel panel-default">
+    <!-- Panel header -->
+    <div class="panel-heading">
+        <h3 class="panel-title"><?= h($lureType->name) ?></h3>
+    </div>
+    <table class="table table-striped" cellpadding="0" cellspacing="0">
         <tr>
-            <th scope="row"><?= __('Name') ?></th>
+            <td><?= __('Name') ?></td>
             <td><?= h($lureType->name) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id') ?></th>
+            <td><?= __('Id') ?></td>
             <td><?= $this->Number->format($lureType->id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Created') ?></th>
+            <td><?= __('Created') ?></td>
             <td><?= h($lureType->created) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Modified') ?></th>
+            <td><?= __('Modified') ?></td>
             <td><?= h($lureType->modified) ?></td>
         </tr>
     </table>
-    <div class="related">
-        <h4><?= __('Related Lures') ?></h4>
-        <?php if (!empty($lureType->lures)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Lure Type Id') ?></th>
-                <th scope="col"><?= __('Name') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($lureType->lures as $lures): ?>
-            <tr>
-                <td><?= h($lures->id) ?></td>
-                <td><?= h($lures->lure_type_id) ?></td>
-                <td><?= h($lures->name) ?></td>
-                <td><?= h($lures->created) ?></td>
-                <td><?= h($lures->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Lures', 'action' => 'view', $lures->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Lures', 'action' => 'edit', $lures->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Lures', 'action' => 'delete', $lures->id], ['confirm' => __('Are you sure you want to delete # {0}?', $lures->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
+</div>
+
+<div class="panel panel-default">
+    <!-- Panel header -->
+    <div class="panel-heading">
+        <h3 class="panel-title"><?= __('Related Lures') ?></h3>
     </div>
+    <?php if (!empty($lureType->lures)): ?>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Lure Type Id') ?></th>
+                <th><?= __('Name') ?></th>
+                <th><?= __('Created') ?></th>
+                <th><?= __('Modified') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($lureType->lures as $lures): ?>
+                <tr>
+                    <td><?= h($lures->id) ?></td>
+                    <td><?= h($lures->lure_type_id) ?></td>
+                    <td><?= h($lures->name) ?></td>
+                    <td><?= h($lures->created) ?></td>
+                    <td><?= h($lures->modified) ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link('', ['controller' => 'Lures', 'action' => 'view', $lures->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
+                        <?= $this->Html->link('', ['controller' => 'Lures', 'action' => 'edit', $lures->id], ['title' => __('Edit'), 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
+                        <?= $this->Form->postLink('', ['controller' => 'Lures', 'action' => 'delete', $lures->id], ['confirm' => __('Are you sure you want to delete # {0}?', $lures->id), 'title' => __('Delete'), 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p class="panel-body">no related Lures</p>
+    <?php endif; ?>
 </div>

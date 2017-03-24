@@ -67,7 +67,7 @@ class CaughtFishesFixture extends TestFixture
             'fish_type_id' => 1,
             'fishing_place_id' => 1,
             'lure_id' => 1,
-            'caught_time' => '2017-03-24 18:26:32',
+            'caught_time' => '2017-03-24 19:04:12',
             'released' => 1,
             'weight' => 1,
             'length' => 1,
@@ -75,8 +75,8 @@ class CaughtFishesFixture extends TestFixture
             'air_temperature' => 1,
             'water_temperature' => 1,
             'weather_type_id' => 1,
-            'created' => '2017-03-24 18:26:32',
-            'modified' => '2017-03-24 18:26:32'
+            'created' => '2017-03-24 19:04:12',
+            'modified' => '2017-03-24 19:04:12'
         ],
     ];
 }

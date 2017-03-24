@@ -17,7 +17,13 @@ class LureTypesControllerTest extends IntegrationTestCase
      */
     public $fixtures = [
         'app.lure_types',
-        'app.lures'
+        'app.lures',
+        'app.caught_fishes',
+        'app.fish_types',
+        'app.fishing_places',
+        'app.weather_types',
+        'app.caught_fish_notes',
+        'app.caught_fish'
     ];
 
     /**
