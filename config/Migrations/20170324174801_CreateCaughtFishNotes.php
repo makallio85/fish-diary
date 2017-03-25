@@ -38,12 +38,6 @@ class CreateCaughtFishNotes extends AbstractMigration
             'unique' => false,
         ]);
         $table->addIndex([
-            'note',
-        ], [
-            'name'   => 'BY_NOTE',
-            'unique' => false,
-        ]);
-        $table->addIndex([
             'created',
         ], [
             'name'   => 'BY_CREATED',

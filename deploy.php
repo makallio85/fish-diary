@@ -16,10 +16,10 @@ add('writable_dirs', []);
 
 // Servers
 
-server('production', 'esxi-102.suomenpt.fi')
-    ->user('fish-diary')
+server('production', env('PRODUCTION_HOST'))
+    ->user(env('PRODUCTION_USERNAME'))
     ->password()
-    ->set('deploy_path', '/home/fish-diary/public_html/v1')
+    ->set('deploy_path', env('PRODUCTION_RELEASE_PATH'))
     ->pty(true);
 
 
