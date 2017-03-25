@@ -1,22 +1,30 @@
 <?php
-namespace Deployer;
+
+use josegonzalez\Dotenv\Loader;
+
 require 'vendor/deployer/deployer/recipe/cakephp.php';
+require 'config/paths.php';
+
+$Loader = new Loader(ROOT . DS . 'config' . DS . '.env');
+// Parse the .env file
+$Loader->parse();
+// Send the parsed .env file to the $_ENV variable
+$Loader->toEnv();
 
 // Configuration
-
-set('ssh_type', 'phpseclib');
+\Deployer\set('ssh_type', 'phpseclib');
 //set('ssh_multiplexing', true);
 
-set('repository', 'https://github.com/makallio85/fish-diary');
+\Deployer\set('repository', 'https://github.com/makallio85/fish-diary');
 
-add('shared_files', []);
-add('shared_dirs', []);
+\Deployer\add('shared_files', []);
+\Deployer\add('shared_dirs', []);
 
-add('writable_dirs', []);
+\Deployer\add('writable_dirs', []);
 
 // Servers
 
-server('production', env('PRODUCTION_HOST'))
+\Deployer\server('production', env('PRODUCTION_HOST'))
     ->user(env('PRODUCTION_USERNAME'))
     ->password()
     ->set('deploy_path', env('PRODUCTION_RELEASE_PATH'))
@@ -25,19 +33,19 @@ server('production', env('PRODUCTION_HOST'))
 
 // Tasks
 
-desc('Restart PHP-FPM service');
-task('php-fpm:restart', function () {
+\Deployer\desc('Restart PHP-FPM service');
+\Deployer\task('php-fpm:restart', function () {
     // The user must have rights for restart service
     // /etc/sudoers: username ALL=NOPASSWD:/bin/systemctl restart php-fpm.service
-    run('sudo systemctl restart php-fpm.service');
+    \Deployer\run('sudo systemctl restart php-fpm.service');
 });
 
-task('deploy:copy-env', function () {
-    run('cp /home/env/fish-diary/.env {{release_path}}/config/.env');
+\Deployer\task('deploy:copy-env', function () {
+    \Deployer\run('cp /home/env/fish-diary/.env {{release_path}}/config/.env');
 });
 
-before('deploy:init', 'deploy:copy-env');
-after('deploy:symlink', 'php-fpm:restart');
+\Deployer\before('deploy:init', 'deploy:copy-env');
+\Deployer\after('deploy:symlink', 'php-fpm:restart');
 
 // [Optional] if deploy fails automatically unlock.
-after('deploy:failed', 'deploy:unlock');
+\Deployer\after('deploy:failed', 'deploy:unlock');
