@@ -27,22 +27,25 @@ class CaughtFishesController extends AppController
         $this->set('_serialize', ['caughtFishes']);
     }
 
+
     /**
      * View method
      *
      * @param string|null $id Caught Fish id.
+     *
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $caughtFish = $this->CaughtFishes->get($id, [
-            'contain' => ['FishTypes', 'FishingPlaces', 'Lures', 'WeatherTypes', 'CaughtFishNotes']
+            'contain' => ['FishTypes', 'FishingPlaces', 'Lures', 'WeatherTypes', 'CaughtFishNotes', 'CaughtFishPhotos']
         ]);
 
         $this->set('caughtFish', $caughtFish);
         $this->set('_serialize', ['caughtFish']);
     }
+
 
     /**
      * Add method
@@ -69,10 +72,12 @@ class CaughtFishesController extends AppController
         $this->set('_serialize', ['caughtFish']);
     }
 
+
     /**
      * Edit method
      *
      * @param string|null $id Caught Fish id.
+     *
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
@@ -98,10 +103,12 @@ class CaughtFishesController extends AppController
         $this->set('_serialize', ['caughtFish']);
     }
 
+
     /**
      * Delete method
      *
      * @param string|null $id Caught Fish id.
+     *
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */

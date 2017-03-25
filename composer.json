@@ -11,7 +11,8 @@
     "vlucas/phpdotenv": "^2.4",
     "josegonzalez/dotenv": "dev-master",
     "friendsofcake/bootstrap-ui": "^1.0",
-    "josegonzalez/cakephp-upload": "^3.6"
+    "josegonzalez/cakephp-upload": "^3.6",
+    "davidyell/proffer": "^0.8.1"
   },
   "require-dev": {
     "psy/psysh": "@stable",

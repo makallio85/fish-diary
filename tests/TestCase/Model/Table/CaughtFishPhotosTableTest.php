@@ -3,20 +3,20 @@ namespace FishDiary\Test\TestCase\Model\Table;
 
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use FishDiary\Model\Table\CaughtFishesTable;
+use FishDiary\Model\Table\CaughtFishPhotosTable;
 
 /**
- * FishDiary\Model\Table\CaughtFishesTable Test Case
+ * FishDiary\Model\Table\CaughtFishPhotosTable Test Case
  */
-class CaughtFishesTableTest extends TestCase
+class CaughtFishPhotosTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \FishDiary\Model\Table\CaughtFishesTable
+     * @var \FishDiary\Model\Table\CaughtFishPhotosTable
      */
-    public $CaughtFishes;
+    public $CaughtFishPhotos;
 
     /**
      * Fixtures
@@ -24,15 +24,8 @@ class CaughtFishesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.caught_fishes',
-        'app.fish_types',
-        'app.fishing_places',
-        'app.lures',
-        'app.lure_types',
-        'app.weather_types',
-        'app.caught_fish_notes',
-        'app.caught_fish',
-        'app.caught_fish_photos'
+        'app.caught_fish_photos',
+        'app.caught_fish'
     ];
 
     /**
@@ -43,8 +36,8 @@ class CaughtFishesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('CaughtFishes') ? [] : ['className' => 'FishDiary\Model\Table\CaughtFishesTable'];
-        $this->CaughtFishes = TableRegistry::get('CaughtFishes', $config);
+        $config = TableRegistry::exists('CaughtFishPhotos') ? [] : ['className' => 'FishDiary\Model\Table\CaughtFishPhotosTable'];
+        $this->CaughtFishPhotos = TableRegistry::get('CaughtFishPhotos', $config);
     }
 
     /**
@@ -54,7 +47,7 @@ class CaughtFishesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->CaughtFishes);
+        unset($this->CaughtFishPhotos);
 
         parent::tearDown();
     }

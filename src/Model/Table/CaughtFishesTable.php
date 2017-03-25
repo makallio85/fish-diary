@@ -1,9 +1,11 @@
 <?php
 namespace FishDiary\Model\Table;
 
+use Cake\Datasource\EntityInterface;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 /**
@@ -13,13 +15,16 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $FishingPlaces
  * @property \Cake\ORM\Association\BelongsTo $Lures
  * @property \Cake\ORM\Association\BelongsTo $WeatherTypes
- * @property \Cake\ORM\Association\HasMany $CaughtFishNotes
+ * @property \Cake\ORM\Association\HasMany   $CaughtFishNotes
+ * @property \Cake\ORM\Association\HasMany   $CaughtFishPhotos
  *
  * @method \FishDiary\Model\Entity\CaughtFish get($primaryKey, $options = [])
  * @method \FishDiary\Model\Entity\CaughtFish newEntity($data = null, array $options = [])
  * @method \FishDiary\Model\Entity\CaughtFish[] newEntities(array $data, array $options = [])
- * @method \FishDiary\Model\Entity\CaughtFish|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \FishDiary\Model\Entity\CaughtFish patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \FishDiary\Model\Entity\CaughtFish|bool
+ *          save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \FishDiary\Model\Entity\CaughtFish
+ *          patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \FishDiary\Model\Entity\CaughtFish[] patchEntities($entities, array $data, array $options = [])
  * @method \FishDiary\Model\Entity\CaughtFish findOrCreate($search, callable $callback = null, $options = [])
  *
@@ -32,6 +37,7 @@ class CaughtFishesTable extends Table
      * Initialize method
      *
      * @param array $config The configuration for the Table.
+     *
      * @return void
      */
     public function initialize(array $config)
@@ -46,11 +52,11 @@ class CaughtFishesTable extends Table
 
         $this->belongsTo('FishTypes', [
             'foreignKey' => 'fish_type_id',
-            'joinType' => 'INNER'
+            'joinType'   => 'INNER'
         ]);
         $this->belongsTo('FishingPlaces', [
             'foreignKey' => 'fishing_place_id',
-            'joinType' => 'INNER'
+            'joinType'   => 'INNER'
         ]);
         $this->belongsTo('Lures', [
             'foreignKey' => 'lure_id'
@@ -61,12 +67,17 @@ class CaughtFishesTable extends Table
         $this->hasMany('CaughtFishNotes', [
             'foreignKey' => 'caught_fish_id'
         ]);
+        $this->hasMany('CaughtFishPhotos', [
+            'foreignKey' => 'caught_fish_id'
+        ]);
     }
+
 
     /**
      * Default validation rules.
      *
      * @param \Cake\Validation\Validator $validator Validator instance.
+     *
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator)
@@ -108,11 +119,13 @@ class CaughtFishesTable extends Table
         return $validator;
     }
 
+
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
      *
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     *
      * @return \Cake\ORM\RulesChecker
      */
     public function buildRules(RulesChecker $rules)
@@ -123,5 +136,38 @@ class CaughtFishesTable extends Table
         $rules->add($rules->existsIn(['weather_type_id'], 'WeatherTypes'));
 
         return $rules;
+    }
+
+
+    /**
+     * @param EntityInterface $entity
+     * @param array           $options
+     *
+     * @return bool
+     */
+    public function save(EntityInterface $entity, $options = [])
+    {
+        parent::save($entity, $options);
+
+        if (parent::save($entity, $options) && !empty($entity->get('photos'))) {
+            $photosTable = TableRegistry::get('CaughtFishPhotos');
+            foreach ($entity->get('photos') as $photo) {
+                $tmp = explode('.', $photo['name']);
+                $ext = end($tmp);
+                $fileName = md5($photo['name']) . '.' . $ext;
+
+                $ent = $photosTable->newEntity([
+                    'caught_fish_id' => $entity->id,
+                    'photo'          => $fileName,
+                    'photo_dir'      => WWW_ROOT . 'photos' . DS . 'caught-fishes',
+                ]);
+                if (!$photosTable->save($ent)) {
+                    return false;
+                }
+                move_uploaded_file($photo['tmp_name'], WWW_ROOT . 'photos' . DS . 'caught-fishes' . DS . $fileName);
+            }
+        }
+
+        return true;
     }
 }

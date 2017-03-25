@@ -27,6 +27,8 @@ $this->start('tb_actions');
     <li><?= $this->Html->link(__('New Weather Type'), ['controller' => 'WeatherTypes', 'action' => 'add']) ?> </li>
     <li><?= $this->Html->link(__('List Caught Fish Notes'), ['controller' => 'CaughtFishNotes', 'action' => 'index']) ?> </li>
     <li><?= $this->Html->link(__('New Caught Fish Note'), ['controller' => 'CaughtFishNotes', 'action' => 'add']) ?> </li>
+    <li><?= $this->Html->link(__('List Caught Fish Photos'), ['controller' => 'CaughtFishPhotos', 'action' => 'index']) ?> </li>
+    <li><?= $this->Html->link(__('New Caught Fish Photo'), ['controller' => 'CaughtFishPhotos', 'action' => 'add']) ?> </li>
 <?php
 $this->end();
 
@@ -52,6 +54,8 @@ $this->start('tb_sidebar');
     <li><?= $this->Html->link(__('New Weather Type'), ['controller' => 'WeatherTypes', 'action' => 'add']) ?> </li>
     <li><?= $this->Html->link(__('List Caught Fish Notes'), ['controller' => 'CaughtFishNotes', 'action' => 'index']) ?> </li>
     <li><?= $this->Html->link(__('New Caught Fish Note'), ['controller' => 'CaughtFishNotes', 'action' => 'add']) ?> </li>
+    <li><?= $this->Html->link(__('List Caught Fish Photos'), ['controller' => 'CaughtFishPhotos', 'action' => 'index']) ?> </li>
+    <li><?= $this->Html->link(__('New Caught Fish Photo'), ['controller' => 'CaughtFishPhotos', 'action' => 'add']) ?> </li>
 </ul>
 <?php
 $this->end();

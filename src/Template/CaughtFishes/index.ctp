@@ -14,6 +14,8 @@ $this->start('tb_actions');
     <li><?= $this->Html->link(__('New Weather Type'), ['controller' => 'WeatherTypes', 'action' => 'add']); ?></li>
     <li><?= $this->Html->link(__('List CaughtFishNotes'), ['controller' => 'CaughtFishNotes', 'action' => 'index']); ?></li>
     <li><?= $this->Html->link(__('New Caught Fish Note'), ['controller' => 'CaughtFishNotes', 'action' => 'add']); ?></li>
+    <li><?= $this->Html->link(__('List CaughtFishPhotos'), ['controller' => 'CaughtFishPhotos', 'action' => 'index']); ?></li>
+    <li><?= $this->Html->link(__('New Caught Fish Photo'), ['controller' => 'CaughtFishPhotos', 'action' => 'add']); ?></li>
 <?php $this->end(); ?>
 <?php $this->assign('tb_sidebar', '<ul class="nav nav-sidebar">' . $this->fetch('tb_actions') . '</ul>'); ?>
 

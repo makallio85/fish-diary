@@ -26,6 +26,7 @@ use Cake\ORM\Entity;
  * @property \FishDiary\Model\Entity\Lure $lure
  * @property \FishDiary\Model\Entity\WeatherType $weather_type
  * @property \FishDiary\Model\Entity\CaughtFishNote[] $caught_fish_notes
+ * @property \FishDiary\Model\Entity\CaughtFishPhoto[] $caught_fish_photos
  */
 class CaughtFish extends Entity
 {

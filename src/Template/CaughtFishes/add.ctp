@@ -40,7 +40,7 @@ $this->start('tb_sidebar');
 <?php
 $this->end();
 ?>
-<?= $this->Form->create($caughtFish); ?>
+<?= $this->Form->create($caughtFish, ['type' => 'file']); ?>
 <fieldset>
     <legend><?= __('Add {0}', ['Caught Fish']) ?></legend>
     <?php
@@ -55,6 +55,8 @@ $this->end();
     echo $this->Form->control('air_temperature');
     echo $this->Form->control('water_temperature');
     echo $this->Form->control('weather_type_id', ['options' => $weatherTypes]);
+    echo $this->Form->control('photos[]', ['type' => 'file', 'multiple' => true]);
+
     ?>
 </fieldset>
 <?= $this->Form->button(__("Add")); ?>

@@ -18,6 +18,8 @@ $this->start('tb_actions');
 <li><?= $this->Html->link(__('New Weather Type'), ['controller' => 'WeatherTypes', 'action' => 'add']) ?> </li>
 <li><?= $this->Html->link(__('List Caught Fish Notes'), ['controller' => 'CaughtFishNotes', 'action' => 'index']) ?> </li>
 <li><?= $this->Html->link(__('New Caught Fish Note'), ['controller' => 'CaughtFishNotes', 'action' => 'add']) ?> </li>
+<li><?= $this->Html->link(__('List Caught Fish Photos'), ['controller' => 'CaughtFishPhotos', 'action' => 'index']) ?> </li>
+<li><?= $this->Html->link(__('New Caught Fish Photo'), ['controller' => 'CaughtFishPhotos', 'action' => 'add']) ?> </li>
 <?php
 $this->end();
 
@@ -38,6 +40,8 @@ $this->start('tb_sidebar');
 <li><?= $this->Html->link(__('New Weather Type'), ['controller' => 'WeatherTypes', 'action' => 'add']) ?> </li>
 <li><?= $this->Html->link(__('List Caught Fish Notes'), ['controller' => 'CaughtFishNotes', 'action' => 'index']) ?> </li>
 <li><?= $this->Html->link(__('New Caught Fish Note'), ['controller' => 'CaughtFishNotes', 'action' => 'add']) ?> </li>
+<li><?= $this->Html->link(__('List Caught Fish Photos'), ['controller' => 'CaughtFishPhotos', 'action' => 'index']) ?> </li>
+<li><?= $this->Html->link(__('New Caught Fish Photo'), ['controller' => 'CaughtFishPhotos', 'action' => 'add']) ?> </li>
 </ul>
 <?php
 $this->end();
@@ -143,5 +147,45 @@ $this->end();
         </table>
     <?php else: ?>
         <p class="panel-body">no related CaughtFishNotes</p>
+    <?php endif; ?>
+</div>
+<div class="panel panel-default">
+    <!-- Panel header -->
+    <div class="panel-heading">
+        <h3 class="panel-title"><?= __('Related CaughtFishPhotos') ?></h3>
+    </div>
+    <?php if (!empty($caughtFish->caught_fish_photos)): ?>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><?= __('Id') ?></th>
+                <th><?= __('Photo') ?></th>
+                <th><?= __('Photo Dir') ?></th>
+                <th><?= __('Created') ?></th>
+                <th><?= __('Modified') ?></th>
+                <th><?= __('Caught Fish Id') ?></th>
+                <th class="actions"><?= __('Actions') ?></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($caughtFish->caught_fish_photos as $caughtFishPhotos): ?>
+                <tr>
+                    <td><?= h($caughtFishPhotos->id) ?></td>
+                    <td><?= h($caughtFishPhotos->photo) ?></td>
+                    <td><?= h($caughtFishPhotos->photo_dir) ?></td>
+                    <td><?= h($caughtFishPhotos->created) ?></td>
+                    <td><?= h($caughtFishPhotos->modified) ?></td>
+                    <td><?= h($caughtFishPhotos->caught_fish_id) ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link('', ['controller' => 'CaughtFishPhotos', 'action' => 'view', $caughtFishPhotos->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
+                        <?= $this->Html->link('', ['controller' => 'CaughtFishPhotos', 'action' => 'edit', $caughtFishPhotos->id], ['title' => __('Edit'), 'class' => 'btn btn-default glyphicon glyphicon-pencil']) ?>
+                        <?= $this->Form->postLink('', ['controller' => 'CaughtFishPhotos', 'action' => 'delete', $caughtFishPhotos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $caughtFishPhotos->id), 'title' => __('Delete'), 'class' => 'btn btn-default glyphicon glyphicon-trash']) ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p class="panel-body">no related CaughtFishPhotos</p>
     <?php endif; ?>
 </div>
