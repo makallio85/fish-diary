@@ -10,14 +10,13 @@
     "cakephp/plugin-installer": "~1.0",
     "vlucas/phpdotenv": "^2.4",
     "josegonzalez/dotenv": "dev-master",
-    "friendsofcake/bootstrap-ui": "^1.0",
-    "josegonzalez/cakephp-upload": "^3.6",
-    "davidyell/proffer": "^0.8.1"
+    "friendsofcake/bootstrap-ui": "^1.0"
   },
   "require-dev": {
     "psy/psysh": "@stable",
     "cakephp/debug_kit": "~3.2",
-    "cakephp/bake": "~1.1"
+    "cakephp/bake": "~1.1",
+    "deployer/deployer": "^4.3"
   },
   "autoload": {
     "psr-4": {

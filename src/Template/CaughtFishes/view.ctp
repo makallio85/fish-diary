@@ -106,7 +106,7 @@ $this->end();
     <?php if (!empty($caughtFish->caught_fish_photos)): ?>
         <?php foreach ($caughtFish->caught_fish_photos as $caughtFishPhoto): ?>
             <?= $this->Html->image(sprintf('/photos/caught-fishes/%s', $caughtFishPhoto->photo),
-                        ['alt' => 'CakePHP', 'class' => ['img-responsive']]) ?>
+                ['alt' => '', 'class' => ['img-responsive']]) ?>
         <?php endforeach; ?>
     <?php endif; ?>
 </div>
