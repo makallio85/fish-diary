@@ -42,7 +42,6 @@ class CreateCaughtFishNotes extends AbstractMigration
         ], [
             'name'   => 'BY_NOTE',
             'unique' => false,
-            'type'   => 'fulltext'
         ]);
         $table->addIndex([
             'created',
