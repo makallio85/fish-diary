@@ -7,22 +7,20 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * LureTypes Model
+ * Users Model
  *
- * @property \Cake\ORM\Association\HasMany $Lures
- *
- * @method \FishDiary\Model\Entity\LureType get($primaryKey, $options = [])
- * @method \FishDiary\Model\Entity\LureType newEntity($data = null, array $options = [])
- * @method \FishDiary\Model\Entity\LureType[] newEntities(array $data, array $options = [])
- * @method \FishDiary\Model\Entity\LureType|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \FishDiary\Model\Entity\LureType
+ * @method \FishDiary\Model\Entity\User get($primaryKey, $options = [])
+ * @method \FishDiary\Model\Entity\User newEntity($data = null, array $options = [])
+ * @method \FishDiary\Model\Entity\User[] newEntities(array $data, array $options = [])
+ * @method \FishDiary\Model\Entity\User|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \FishDiary\Model\Entity\User
  *          patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \FishDiary\Model\Entity\LureType[] patchEntities($entities, array $data, array $options = [])
- * @method \FishDiary\Model\Entity\LureType findOrCreate($search, callable $callback = null, $options = [])
+ * @method \FishDiary\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
+ * @method \FishDiary\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class LureTypesTable extends Table
+class UsersTable extends Table
 {
 
     /**
@@ -36,15 +34,11 @@ class LureTypesTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('lure_types');
-        $this->setDisplayField('name');
+        $this->setTable('users');
+        $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-
-        $this->hasMany('Lures', [
-            'foreignKey' => 'lure_type_id'
-        ]);
     }
 
 
@@ -62,8 +56,12 @@ class LureTypesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->requirePresence('username', 'create')
+            ->notEmpty('username');
+
+        $validator
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
 
         return $validator;
     }
@@ -79,7 +77,7 @@ class LureTypesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['name']));
+        $rules->add($rules->isUnique(['username']));
 
         return $rules;
     }

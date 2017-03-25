@@ -1,6 +1,7 @@
 <?php
 namespace FishDiary\Controller;
 
+use Cake\Utility\Inflector;
 use FishDiary\Controller\AppController;
 
 /**
@@ -18,6 +19,7 @@ class LureTypesController extends AppController
      */
     public function index()
     {
+        $this->set('title', __('Lure types'));
         $lureTypes = $this->paginate($this->LureTypes);
 
         $this->set(compact('lureTypes'));
@@ -36,6 +38,7 @@ class LureTypesController extends AppController
         $lureType = $this->LureTypes->get($id, [
             'contain' => ['Lures']
         ]);
+        $this->set('title', Inflector::pluralize($lureType->name));
 
         $this->set('lureType', $lureType);
         $this->set('_serialize', ['lureType']);
@@ -48,6 +51,7 @@ class LureTypesController extends AppController
      */
     public function add()
     {
+        $this->set('title', __('Add lure type'));
         $lureType = $this->LureTypes->newEntity();
         if ($this->request->is('post')) {
             $lureType = $this->LureTypes->patchEntity($lureType, $this->request->getData());

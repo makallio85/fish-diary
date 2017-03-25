@@ -7,11 +7,7 @@
 $this->extend('../Layout/TwitterBootstrap/dashboard');
 
 $this->start('tb_actions');
-?>
-    <li><?= $this->Html->link(__('List Lure Types'), ['action' => 'index']) ?></li>
-    <li><?= $this->Html->link(__('List Lures'), ['controller' => 'Lures', 'action' => 'index']) ?> </li>
-    <li><?= $this->Html->link(__('New Lure'), ['controller' => 'Lures', 'action' => 'add']) ?> </li>
-<?php
+echo $this->element('Menu/menu');
 $this->end();
 
 $this->start('tb_sidebar');

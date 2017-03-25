@@ -18,6 +18,7 @@ class FishingPlacesController extends AppController
      */
     public function index()
     {
+        $this->set('title', __('Fishing places'));
         $fishingPlaces = $this->paginate($this->FishingPlaces);
 
         $this->set(compact('fishingPlaces'));
@@ -34,8 +35,9 @@ class FishingPlacesController extends AppController
     public function view($id = null)
     {
         $fishingPlace = $this->FishingPlaces->get($id, [
-            'contain' => ['CaughtFishes']
+            'contain' => ['CaughtFishes' => ['FishTypes']]
         ]);
+        $this->set('title', $fishingPlace->name);
 
         $this->set('fishingPlace', $fishingPlace);
         $this->set('_serialize', ['fishingPlace']);
@@ -48,6 +50,7 @@ class FishingPlacesController extends AppController
      */
     public function add()
     {
+        $this->set('title', __('Add fishing place'));
         $fishingPlace = $this->FishingPlaces->newEntity();
         if ($this->request->is('post')) {
             $fishingPlace = $this->FishingPlaces->patchEntity($fishingPlace, $this->request->getData());

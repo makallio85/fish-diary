@@ -1,9 +1,8 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CreateFishTypes extends AbstractMigration
+class CreateUsers extends AbstractMigration
 {
-
     /**
      * Change Method.
      *
@@ -13,45 +12,49 @@ class CreateFishTypes extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('fish_types');
-        $table->addColumn('name', 'string', [
+        $table = $this->table('users');
+        $table->addColumn('username', 'string', [
             'default' => null,
-            'limit'   => 100,
-            'null'    => false,
+            'limit' => 50,
+            'null' => false,
+        ]);
+        $table->addColumn('password', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => false,
         ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,
-            'null'    => false,
+            'null' => false,
         ]);
         $table->addColumn('modified', 'datetime', [
             'default' => null,
-            'null'    => false,
+            'null' => false,
         ]);
         $table->addIndex([
-            'name',
+            'username',
         ], [
-            'name'   => 'BY_NAME',
+            'name' => 'BY_USERNAME',
+            'unique' => false,
+        ]);
+        $table->addIndex([
+            'password',
+        ], [
+            'name' => 'BY_PASSWORD',
             'unique' => false,
         ]);
         $table->addIndex([
             'created',
         ], [
-            'name'   => 'BY_CREATED',
+            'name' => 'BY_CREATED',
             'unique' => false,
         ]);
         $table->addIndex([
             'modified',
         ], [
-            'name'   => 'BY_MODIFIED',
+            'name' => 'BY_MODIFIED',
             'unique' => false,
         ]);
         $table->create();
-
-        $this->populate();
-    }
-
-    public function populate()
-    {
-
     }
 }

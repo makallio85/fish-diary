@@ -61,6 +61,9 @@ class CaughtFishesTable extends Table
         $this->belongsTo('Lures', [
             'foreignKey' => 'lure_id'
         ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id'
+        ]);
         $this->belongsTo('WeatherTypes', [
             'foreignKey' => 'weather_type_id'
         ]);
@@ -116,6 +119,10 @@ class CaughtFishesTable extends Table
             ->integer('water_temperature')
             ->allowEmpty('water_temperature');
 
+        $validator
+            ->integer('user_id')
+            ->notEmpty('user_id');
+
         return $validator;
     }
 
@@ -134,6 +141,7 @@ class CaughtFishesTable extends Table
         $rules->add($rules->existsIn(['fishing_place_id'], 'FishingPlaces'));
         $rules->add($rules->existsIn(['lure_id'], 'Lures'));
         $rules->add($rules->existsIn(['weather_type_id'], 'WeatherTypes'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
     }

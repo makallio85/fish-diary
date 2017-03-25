@@ -42,7 +42,6 @@ $this->end();
 ?>
 <?= $this->Form->create($weatherType); ?>
 <fieldset>
-    <legend><?= __('Edit {0}', ['Weather Type']) ?></legend>
     <?php
     echo $this->Form->control('name');
     ?>

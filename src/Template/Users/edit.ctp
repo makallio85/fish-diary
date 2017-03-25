@@ -16,21 +16,22 @@ $this->start('tb_sidebar');
     <li><?=
     $this->Form->postLink(
         __('Delete'),
-        ['action' => 'delete', $fishingPlaceType->id],
-        ['confirm' => __('Are you sure you want to delete # {0}?', $fishingPlaceType->id)]
+        ['action' => 'delete', $user->id],
+        ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]
     )
     ?>
     </li>
-    <li><?= $this->Html->link(__('List Fishing Place Types'), ['action' => 'index']) ?></li>
+    <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
 </ul>
 <?php
 $this->end();
 ?>
-<?= $this->Form->create($fishingPlaceType); ?>
+<?= $this->Form->create($user); ?>
 <fieldset>
-    <legend><?= __('Edit {0}', ['Fishing Place Type']) ?></legend>
+    <legend><?= __('Edit {0}', ['User']) ?></legend>
     <?php
-    echo $this->Form->control('name');
+    echo $this->Form->control('username');
+    echo $this->Form->control('password');
     ?>
 </fieldset>
 <?= $this->Form->button(__("Save")); ?>

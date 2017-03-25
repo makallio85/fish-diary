@@ -15,7 +15,8 @@ use Cake\Validation\Validator;
  * @method \FishDiary\Model\Entity\FishType newEntity($data = null, array $options = [])
  * @method \FishDiary\Model\Entity\FishType[] newEntities(array $data, array $options = [])
  * @method \FishDiary\Model\Entity\FishType|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \FishDiary\Model\Entity\FishType patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \FishDiary\Model\Entity\FishType
+ *          patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \FishDiary\Model\Entity\FishType[] patchEntities($entities, array $data, array $options = [])
  * @method \FishDiary\Model\Entity\FishType findOrCreate($search, callable $callback = null, $options = [])
  *
@@ -28,6 +29,7 @@ class FishTypesTable extends Table
      * Initialize method
      *
      * @param array $config The configuration for the Table.
+     *
      * @return void
      */
     public function initialize(array $config)
@@ -45,10 +47,12 @@ class FishTypesTable extends Table
         ]);
     }
 
+
     /**
      * Default validation rules.
      *
      * @param \Cake\Validation\Validator $validator Validator instance.
+     *
      * @return \Cake\Validation\Validator
      */
     public function validationDefault(Validator $validator)
@@ -62,5 +66,21 @@ class FishTypesTable extends Table
             ->notEmpty('name');
 
         return $validator;
+    }
+
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     *
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['name']));
+
+        return $rules;
     }
 }

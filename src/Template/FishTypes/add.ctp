@@ -7,11 +7,7 @@
 $this->extend('../Layout/TwitterBootstrap/dashboard');
 
 $this->start('tb_actions');
-?>
-    <li><?= $this->Html->link(__('List Fish Types'), ['action' => 'index']) ?></li>
-    <li><?= $this->Html->link(__('List Caught Fishes'), ['controller' => 'CaughtFishes', 'action' => 'index']) ?> </li>
-    <li><?= $this->Html->link(__('New Caught Fish'), ['controller' => 'CaughtFishes', 'action' => 'add']) ?> </li>
-<?php
+echo $this->element('Menu/menu');
 $this->end();
 
 $this->start('tb_sidebar');
@@ -26,7 +22,6 @@ $this->end();
 ?>
 <?= $this->Form->create($fishType); ?>
 <fieldset>
-    <legend><?= __('Add {0}', ['Fish Type']) ?></legend>
     <?php
     echo $this->Form->control('name');
     ?>

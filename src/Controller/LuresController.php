@@ -37,8 +37,10 @@ class LuresController extends AppController
     public function view($id = null)
     {
         $lure = $this->Lures->get($id, [
-            'contain' => ['LureTypes', 'CaughtFishes']
+            'contain' => ['LureTypes', 'CaughtFishes' => ['FishTypes']]
         ]);
+
+        $this->set('title', $lure->name);
 
         $this->set('lure', $lure);
         $this->set('_serialize', ['lure']);
@@ -51,6 +53,7 @@ class LuresController extends AppController
      */
     public function add()
     {
+        $this->set('title', __('Add lure'));
         $lure = $this->Lures->newEntity();
         if ($this->request->is('post')) {
             $lure = $this->Lures->patchEntity($lure, $this->request->getData());

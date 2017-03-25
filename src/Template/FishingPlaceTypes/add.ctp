@@ -7,9 +7,7 @@
 $this->extend('../Layout/TwitterBootstrap/dashboard');
 
 $this->start('tb_actions');
-?>
-    <li><?= $this->Html->link(__('List Fishing Place Types'), ['action' => 'index']) ?></li>
-<?php
+echo $this->element('Menu/menu');
 $this->end();
 
 $this->start('tb_sidebar');

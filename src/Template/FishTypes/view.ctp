@@ -3,14 +3,7 @@ $this->extend('../Layout/TwitterBootstrap/dashboard');
 
 
 $this->start('tb_actions');
-?>
-<li><?= $this->Html->link(__('Edit Fish Type'), ['action' => 'edit', $fishType->id]) ?> </li>
-<li><?= $this->Form->postLink(__('Delete Fish Type'), ['action' => 'delete', $fishType->id], ['confirm' => __('Are you sure you want to delete # {0}?', $fishType->id)]) ?> </li>
-<li><?= $this->Html->link(__('List Fish Types'), ['action' => 'index']) ?> </li>
-<li><?= $this->Html->link(__('New Fish Type'), ['action' => 'add']) ?> </li>
-<li><?= $this->Html->link(__('List Caught Fishes'), ['controller' => 'CaughtFishes', 'action' => 'index']) ?> </li>
-<li><?= $this->Html->link(__('New Caught Fish'), ['controller' => 'CaughtFishes', 'action' => 'add']) ?> </li>
-<?php
+echo $this->element('Menu/menu');
 $this->end();
 
 $this->start('tb_sidebar');

@@ -3,12 +3,7 @@ $this->extend('../Layout/TwitterBootstrap/dashboard');
 
 
 $this->start('tb_actions');
-?>
-<li><?= $this->Html->link(__('Edit Fishing Place Type'), ['action' => 'edit', $fishingPlaceType->id]) ?> </li>
-<li><?= $this->Form->postLink(__('Delete Fishing Place Type'), ['action' => 'delete', $fishingPlaceType->id], ['confirm' => __('Are you sure you want to delete # {0}?', $fishingPlaceType->id)]) ?> </li>
-<li><?= $this->Html->link(__('List Fishing Place Types'), ['action' => 'index']) ?> </li>
-<li><?= $this->Html->link(__('New Fishing Place Type'), ['action' => 'add']) ?> </li>
-<?php
+echo $this->element('Menu/menu');
 $this->end();
 
 $this->start('tb_sidebar');

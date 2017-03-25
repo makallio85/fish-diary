@@ -7,19 +7,7 @@
 $this->extend('../Layout/TwitterBootstrap/dashboard');
 
 $this->start('tb_actions');
-?>
-    <li><?=
-    $this->Form->postLink(
-        __('Delete'),
-        ['action' => 'delete', $lureType->id],
-        ['confirm' => __('Are you sure you want to delete # {0}?', $lureType->id)]
-    )
-    ?>
-    </li>
-    <li><?= $this->Html->link(__('List Lure Types'), ['action' => 'index']) ?></li>
-    <li><?= $this->Html->link(__('List Lures'), ['controller' => 'Lures', 'action' => 'index']) ?> </li>
-    <li><?= $this->Html->link(__('New Lure'), ['controller' => 'Lures', 'action' => 'add']) ?> </li>
-<?php
+echo $this->element('Menu/menu');
 $this->end();
 
 $this->start('tb_sidebar');

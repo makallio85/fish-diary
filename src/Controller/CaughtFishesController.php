@@ -18,6 +18,7 @@ class CaughtFishesController extends AppController
      */
     public function index()
     {
+        $this->set('title', __('Caught fishes'));
         $this->paginate = [
             'contain' => ['FishTypes', 'FishingPlaces', 'Lures', 'WeatherTypes']
         ];
@@ -38,6 +39,7 @@ class CaughtFishesController extends AppController
      */
     public function view($id = null)
     {
+        $this->set('title', __('Caught fish'));
         $caughtFish = $this->CaughtFishes->get($id, [
             'contain' => ['FishTypes', 'FishingPlaces', 'Lures', 'WeatherTypes', 'CaughtFishNotes', 'CaughtFishPhotos']
         ]);
@@ -54,9 +56,11 @@ class CaughtFishesController extends AppController
      */
     public function add()
     {
+        $this->set('title', __('Add caught fish'));
         $caughtFish = $this->CaughtFishes->newEntity();
         if ($this->request->is('post')) {
             $caughtFish = $this->CaughtFishes->patchEntity($caughtFish, $this->request->getData());
+            $caughtFish->user_id = $this->Auth->user('id');
             if ($this->CaughtFishes->save($caughtFish)) {
                 $this->Flash->success(__('The caught fish has been saved.'));
 
@@ -83,6 +87,7 @@ class CaughtFishesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->set('title', __('Edit caught fish'));
         $caughtFish = $this->CaughtFishes->get($id, [
             'contain' => []
         ]);

@@ -22,18 +22,11 @@ $this->start('tb_body_start');
                 <ul class="nav navbar-nav navbar-right visible-xs">
                     <?= $this->fetch('tb_actions') ?>
                 </ul>
-                <!--
+
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-divider"></li>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Help</a></li>
+                    <li><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?> </li>
                 </ul>
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Search...">
-                </form>
-                -->
             </div>
         </div>
     </div>
@@ -44,7 +37,7 @@ $this->start('tb_body_start');
                 <?= $this->fetch('tb_sidebar') ?>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                <h1 class="page-header"><?= $this->request->controller; ?></h1>
+                <h1 class="page-header"><?= !empty($title) ? $title : $this->request->controller; ?></h1>
 <?php
 /**
  * Default `flash` block.

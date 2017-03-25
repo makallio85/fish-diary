@@ -48,6 +48,7 @@ class FishTypesController extends AppController
      */
     public function add()
     {
+        $this->set('title', __('Add fish type'));
         $fishType = $this->FishTypes->newEntity();
         if ($this->request->is('post')) {
             $fishType = $this->FishTypes->patchEntity($fishType, $this->request->getData());

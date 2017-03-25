@@ -7,29 +7,7 @@
 $this->extend('../Layout/TwitterBootstrap/dashboard');
 
 $this->start('tb_actions');
-?>
-    <li><?=
-    $this->Form->postLink(
-        __('Delete'),
-        ['action' => 'delete', $caughtFish->id],
-        ['confirm' => __('Are you sure you want to delete # {0}?', $caughtFish->id)]
-    )
-    ?>
-    </li>
-    <li><?= $this->Html->link(__('List Caught Fishes'), ['action' => 'index']) ?></li>
-    <li><?= $this->Html->link(__('List Fish Types'), ['controller' => 'FishTypes', 'action' => 'index']) ?> </li>
-    <li><?= $this->Html->link(__('New Fish Type'), ['controller' => 'FishTypes', 'action' => 'add']) ?> </li>
-    <li><?= $this->Html->link(__('List Fishing Places'), ['controller' => 'FishingPlaces', 'action' => 'index']) ?> </li>
-    <li><?= $this->Html->link(__('New Fishing Place'), ['controller' => 'FishingPlaces', 'action' => 'add']) ?> </li>
-    <li><?= $this->Html->link(__('List Lures'), ['controller' => 'Lures', 'action' => 'index']) ?> </li>
-    <li><?= $this->Html->link(__('New Lure'), ['controller' => 'Lures', 'action' => 'add']) ?> </li>
-    <li><?= $this->Html->link(__('List Weather Types'), ['controller' => 'WeatherTypes', 'action' => 'index']) ?> </li>
-    <li><?= $this->Html->link(__('New Weather Type'), ['controller' => 'WeatherTypes', 'action' => 'add']) ?> </li>
-    <li><?= $this->Html->link(__('List Caught Fish Notes'), ['controller' => 'CaughtFishNotes', 'action' => 'index']) ?> </li>
-    <li><?= $this->Html->link(__('New Caught Fish Note'), ['controller' => 'CaughtFishNotes', 'action' => 'add']) ?> </li>
-    <li><?= $this->Html->link(__('List Caught Fish Photos'), ['controller' => 'CaughtFishPhotos', 'action' => 'index']) ?> </li>
-    <li><?= $this->Html->link(__('New Caught Fish Photo'), ['controller' => 'CaughtFishPhotos', 'action' => 'add']) ?> </li>
-<?php
+echo $this->element('Menu/menu');
 $this->end();
 
 $this->start('tb_sidebar');
