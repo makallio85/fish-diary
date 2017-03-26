@@ -2,6 +2,7 @@
 namespace FishDiary\Model\Table;
 
 use Cake\Datasource\EntityInterface;
+use Cake\Log\Log;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -68,13 +69,13 @@ class CaughtFishesTable extends Table
             'foreignKey' => 'weather_type_id'
         ]);
         $this->hasMany('CaughtFishNotes', [
-            'foreignKey' => 'caught_fish_id',
-            'dependent' => true,
+            'foreignKey'       => 'caught_fish_id',
+            'dependent'        => true,
             'cascadeCallbacks' => true,
         ]);
         $this->hasMany('CaughtFishPhotos', [
-            'foreignKey' => 'caught_fish_id',
-            'dependent' => true,
+            'foreignKey'       => 'caught_fish_id',
+            'dependent'        => true,
             'cascadeCallbacks' => true,
         ]);
     }
@@ -177,6 +178,8 @@ class CaughtFishesTable extends Table
                     return false;
                 }
                 move_uploaded_file($photo['tmp_name'], WWW_ROOT . 'img' . DS . 'caught-fishes' . DS . $fileName);
+                Log::write(1, $photo['tmp_name']);
+                Log::write(1, WWW_ROOT . 'img' . DS . 'caught-fishes' . DS . $fileName);
             }
         }
 
