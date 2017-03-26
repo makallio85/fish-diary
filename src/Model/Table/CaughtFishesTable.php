@@ -171,12 +171,12 @@ class CaughtFishesTable extends Table
                 $ent = $photosTable->newEntity([
                     'caught_fish_id' => $entity->id,
                     'photo'          => $fileName,
-                    'photo_dir'      => WWW_ROOT . 'photos' . DS . 'caught-fishes',
+                    'photo_dir'      => WWW_ROOT . 'img' . DS . 'caught-fishes',
                 ]);
                 if (!$photosTable->save($ent)) {
                     return false;
                 }
-                move_uploaded_file($photo['tmp_name'], WWW_ROOT . 'photos' . DS . 'caught-fishes' . DS . $fileName);
+                move_uploaded_file($photo['tmp_name'], WWW_ROOT . 'img' . DS . 'caught-fishes' . DS . $fileName);
             }
         }
 

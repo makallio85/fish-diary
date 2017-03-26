@@ -105,7 +105,7 @@ $this->end();
     </div>
     <?php if (!empty($caughtFish->caught_fish_photos)): ?>
         <?php foreach ($caughtFish->caught_fish_photos as $caughtFishPhoto): ?>
-            <?= $this->Html->image(sprintf('/photos/caught-fishes/%s', $caughtFishPhoto->photo),
+            <?= $this->Html->image(sprintf('caught-fishes/%s', $caughtFishPhoto->photo),
                 ['alt' => '', 'class' => ['img-responsive']]) ?>
         <?php endforeach; ?>
     <?php endif; ?>

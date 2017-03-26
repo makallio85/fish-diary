@@ -31,6 +31,11 @@ $Loader->toEnv();
     ->set('keep_releases', 10)
     ->pty(true);
 
+\Deployer\set('shared_dirs', [
+    'logs',
+    'tmp',
+    'webroot/img/caught-fishes'
+]);
 
 // Tasks
 
