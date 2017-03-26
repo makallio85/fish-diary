@@ -66,10 +66,6 @@ class CaughtFishPhotosTable extends Table
             ->requirePresence('photo', 'create')
             ->notEmpty('photo');
 
-        $validator
-            ->requirePresence('photo_dir', 'create')
-            ->notEmpty('photo_dir');
-
         return $validator;
     }
 

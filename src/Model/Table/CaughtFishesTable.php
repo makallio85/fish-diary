@@ -169,18 +169,14 @@ class CaughtFishesTable extends Table
                 $ext = end($tmp);
                 $fileName = md5($photo['name']) . '.' . $ext;
 
-                $path = readlink(WWW_ROOT . 'img' . DS . 'caught-fishes');
                 $ent = $photosTable->newEntity([
                     'caught_fish_id' => $entity->id,
                     'photo'          => $fileName,
-                    'photo_dir'      => $path,
                 ]);
                 if (!$photosTable->save($ent)) {
                     return false;
                 }
-                move_uploaded_file($photo['tmp_name'], $path . DS . $fileName);
-                Log::write(1, $photo);
-                Log::write(1, WWW_ROOT . 'img' . DS . 'caught-fishes' . DS . $fileName);
+                move_uploaded_file($photo['tmp_name'], WWW_ROOT . 'img' . DS . 'caught-fishes' . DS . $fileName);
             }
         }
 
