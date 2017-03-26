@@ -2,6 +2,7 @@
 /tmp/*
 /logs/*
 /bower_components/*
-.idea/*
-config/.env
-webroot/photos/*
+/.idea/*
+/config/.env
+/webroot/photos/caught-fishes/*
+!/webroot/photos/caught-fishes/empty

@@ -28,6 +28,7 @@ $Loader->toEnv();
     ->user(env('PRODUCTION_USERNAME'))
     ->password()
     ->set('deploy_path', env('PRODUCTION_RELEASE_PATH'))
+    ->set('keep_releases', 10)
     ->pty(true);
 
 
@@ -37,7 +38,7 @@ $Loader->toEnv();
 \Deployer\task('php-fpm:restart', function () {
     // The user must have rights for restart service
     // /etc/sudoers: username ALL=NOPASSWD:/bin/systemctl restart php-fpm.service
-    \Deployer\run('sudo systemctl restart php-fpm.service');
+    \Deployer\run('sudo -S /sbin/service httpd reload');
 });
 
 \Deployer\task('deploy:copy-env', function () {

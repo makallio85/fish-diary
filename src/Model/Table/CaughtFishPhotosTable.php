@@ -1,6 +1,7 @@
 <?php
 namespace FishDiary\Model\Table;
 
+use Cake\Datasource\EntityInterface;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -86,5 +87,22 @@ class CaughtFishPhotosTable extends Table
         $rules->add($rules->existsIn(['caught_fish_id'], 'CaughtFishes'));
 
         return $rules;
+    }
+
+
+    /**
+     * @param EntityInterface $entity
+     * @param array           $options
+     *
+     * @return bool
+     */
+    public function delete(EntityInterface $entity, $options = [])
+    {
+        $photo = $entity->get('photo_dir') . DS . $entity->get('photo');
+        if (parent::delete($entity, $options) && file_exists($photo)) {
+            return unlink($photo);
+        }
+
+        return false;
     }
 }

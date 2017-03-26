@@ -68,10 +68,14 @@ class CaughtFishesTable extends Table
             'foreignKey' => 'weather_type_id'
         ]);
         $this->hasMany('CaughtFishNotes', [
-            'foreignKey' => 'caught_fish_id'
+            'foreignKey' => 'caught_fish_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->hasMany('CaughtFishPhotos', [
-            'foreignKey' => 'caught_fish_id'
+            'foreignKey' => 'caught_fish_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
     }
 
