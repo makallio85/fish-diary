@@ -1,6 +1,7 @@
 <?php
 namespace FishDiary\Controller;
 
+use Cake\Utility\Inflector;
 use FishDiary\Controller\AppController;
 
 /**
@@ -18,6 +19,7 @@ class FishTypesController extends AppController
      */
     public function index()
     {
+        $this->set('title', __('Fish types'));
         $fishTypes = $this->paginate($this->FishTypes);
 
         $this->set(compact('fishTypes'));
@@ -34,8 +36,9 @@ class FishTypesController extends AppController
     public function view($id = null)
     {
         $fishType = $this->FishTypes->get($id, [
-            'contain' => ['CaughtFishes']
+            'contain' => ['CaughtFishes' => ['FishingPlaces']]
         ]);
+        $this->set('title', Inflector::pluralize($fishType->name));
 
         $this->set('fishType', $fishType);
         $this->set('_serialize', ['fishType']);
