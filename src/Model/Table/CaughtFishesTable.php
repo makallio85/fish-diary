@@ -178,7 +178,7 @@ class CaughtFishesTable extends Table
                     return false;
                 }
                 move_uploaded_file($photo['tmp_name'], WWW_ROOT . 'img' . DS . 'caught-fishes' . DS . $fileName);
-                Log::write(1, $photo['tmp_name']);
+                Log::write(1, $photo);
                 Log::write(1, WWW_ROOT . 'img' . DS . 'caught-fishes' . DS . $fileName);
             }
         }
