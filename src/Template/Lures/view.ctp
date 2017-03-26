@@ -24,7 +24,7 @@ $this->end();
 <div class="panel panel-default">
     <table class="table table-striped" cellpadding="0" cellspacing="0">
         <tr>
-            <td><?= __('Lure Type') ?></td>
+            <td><?= __('Type') ?></td>
             <td><?= $lure->has('lure_type') ? $this->Html->link($lure->lure_type->name, ['controller' => 'LureTypes', 'action' => 'view', $lure->lure_type->id]) : '' ?></td>
         </tr>
     </table>
@@ -40,19 +40,24 @@ $this->end();
             <thead>
             <tr>
                 <th><?= __('Type') ?></th>
-                <th><?= __('Date') ?></th>
-                <th><?= __('Length') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
+                <th><?= __('Time') ?></th>
+                <th><?= __('Place') ?></th>
+                <th class="hidden-xs"><?= __('Length') ?></th>
+                <th class="hidden-xs actions"><?= __('Actions') ?></th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($lure->caught_fishes as $caughtFishes): ?>
+            <?php foreach ($lure->caught_fishes as $caughtFish): ?>
                 <tr>
-                    <td><?= h($caughtFishes->fish_type->name) ?></td>
-                    <td><?= h($caughtFishes->caught_time->format('Y-m-d')) ?></td>
-                    <td><?= h($caughtFishes->length) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link('', ['controller' => 'CaughtFishes', 'action' => 'view', $caughtFishes->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
+                    <td>
+                        <?= $caughtFish->has('fish_type') ? $this->Html->link($caughtFish->fish_type->name,
+                            ['controller' => 'CaughtFishes', 'action' => 'view', $caughtFish->id]) : '' ?>
+                    </td>
+                    <td><?= h($caughtFish->caught_time->format('Y-m-d')) ?></td>
+                    <td><?= h($caughtFish->fishing_place->name) ?></td>
+                    <td class="hidden-xs"><?= h($caughtFish->length) ?></td>
+                    <td class="hidden-xs actions">
+                        <?= $this->Html->link('', ['controller' => 'CaughtFishes', 'action' => 'view', $caughtFish->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

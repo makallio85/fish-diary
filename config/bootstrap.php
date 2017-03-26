@@ -228,3 +228,5 @@ if (Configure::read('debug')) {
 }
 
 Plugin::load('BootstrapUI');
+
+Configure::write('App.title', 'Fish-Diary');

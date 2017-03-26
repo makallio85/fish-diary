@@ -1,8 +1,6 @@
 <?php
 namespace FishDiary\Controller;
 
-use FishDiary\Controller\AppController;
-
 /**
  * CaughtFishPhotos Controller
  *
@@ -27,22 +25,28 @@ class CaughtFishPhotosController extends AppController
         $this->set('_serialize', ['caughtFishPhotos']);
     }
 
+
     /**
      * View method
      *
      * @param string|null $id Caught Fish Photo id.
+     *
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $caughtFishPhoto = $this->CaughtFishPhotos->get($id, [
-            'contain' => ['CaughtFish']
+            'contain' => ['CaughtFishes']
         ]);
+        $this->response->type('jpg');
 
-        $this->set('caughtFishPhoto', $caughtFishPhoto);
-        $this->set('_serialize', ['caughtFishPhoto']);
+        return $this->response->withFile(
+            WWW_ROOT . 'img' . DS . 'caught-fishes' . DS . $caughtFishPhoto->get('photo'),
+            ['download' => false, 'name' => $caughtFishPhoto->get('photo')]
+        );
     }
+
 
     /**
      * Add method
@@ -66,10 +70,12 @@ class CaughtFishPhotosController extends AppController
         $this->set('_serialize', ['caughtFishPhoto']);
     }
 
+
     /**
      * Edit method
      *
      * @param string|null $id Caught Fish Photo id.
+     *
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
@@ -92,10 +98,12 @@ class CaughtFishPhotosController extends AppController
         $this->set('_serialize', ['caughtFishPhoto']);
     }
 
+
     /**
      * Delete method
      *
      * @param string|null $id Caught Fish Photo id.
+     *
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */

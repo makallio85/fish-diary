@@ -47,7 +47,7 @@ $this->end();
                     ['controller' => 'Lures', 'action' => 'view', $caughtFish->lure->id]) : '' ?></td>
         </tr>
         <tr>
-            <td><?= __('Weather Type') ?></td>
+            <td><?= __('Weather') ?></td>
             <td><?= $caughtFish->has('weather_type') ? $this->Html->link($caughtFish->weather_type->name,
                     ['controller' => 'WeatherTypes', 'action' => 'view', $caughtFish->weather_type->id]) : '' ?></td>
         </tr>
@@ -81,9 +81,26 @@ $this->end();
     </div>
     <?php if (!empty($caughtFish->caught_fish_notes)): ?>
         <?php foreach ($caughtFish->caught_fish_notes as $caughtFishNotes): ?>
-            <p style="margin: 10px"><?= h($caughtFishNotes->created->format('Y-m-d')) ?>: <?= h($caughtFishNotes->note) ?></p>
+            <p style="margin: 10px"><?= h($caughtFishNotes->created->format('Y-m-d')) ?>:
+                <?= h($caughtFishNotes->note) ?></p>
         <?php endforeach; ?>
     <?php endif; ?>
+    <?= $this->Form->create(null, [
+        'url' => [
+            'controller' => 'CaughtFishNotes',
+            'action'     => sprintf('add?redirect-to-caught-fish=%s', $caughtFish->id)
+        ]
+    ]); ?>
+    <div style="margin: 10px">
+        <fieldset>
+            <?php
+            echo $this->Form->hidden('caught_fish_id', ['value' => $caughtFish->id]);
+            echo $this->Form->control('note', ['label' => '', 'required' => false, 'type' => 'textarea']);
+            ?>
+        </fieldset>
+        <?= $this->Form->button(__('Add note')); ?>
+        <?= $this->Form->end() ?>
+    </div>
 </div>
 <div class="panel panel-default">
     <!-- Panel header -->
@@ -92,8 +109,13 @@ $this->end();
     </div>
     <?php if (!empty($caughtFish->caught_fish_photos)): ?>
         <?php foreach ($caughtFish->caught_fish_photos as $caughtFishPhoto): ?>
-            <?= $this->Html->image(sprintf('caught-fishes/%s', $caughtFishPhoto->photo),
-                ['alt' => '', 'class' => ['img-responsive']]) ?>
+            <div style="margin: 10px">
+                <?= $this->Html->image(sprintf('caught-fishes/%s', $caughtFishPhoto->photo), [
+                    'alt'   => '',
+                    'class' => ['img-responsive', 'img-thumbnail'],
+                    'url'   => ['controller' => 'CaughtFishPhotos', 'action' => 'view', $caughtFishPhoto->id]
+                ]) ?>
+            </div>
         <?php endforeach; ?>
     <?php endif; ?>
 </div>

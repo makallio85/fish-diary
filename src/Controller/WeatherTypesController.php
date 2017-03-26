@@ -34,8 +34,9 @@ class WeatherTypesController extends AppController
     public function view($id = null)
     {
         $weatherType = $this->WeatherTypes->get($id, [
-            'contain' => ['CaughtFishes']
+            'contain' => ['CaughtFishes' => ['FishTypes', 'FishingPlaces']]
         ]);
+        $this->set('title', $weatherType->name);
 
         $this->set('weatherType', $weatherType);
         $this->set('_serialize', ['weatherType']);

@@ -94,7 +94,7 @@ class CaughtFishPhotosTable extends Table
      */
     public function delete(EntityInterface $entity, $options = [])
     {
-        $photo = $entity->get('photo_dir') . DS . $entity->get('photo');
+        $photo = WWW_ROOT . 'img' . DS . 'caught-fishes' . DS . $entity->get('photo');
         if (parent::delete($entity, $options) && file_exists($photo)) {
             return unlink($photo);
         }

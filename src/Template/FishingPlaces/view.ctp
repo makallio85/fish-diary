@@ -22,18 +22,21 @@ $this->end();
             <tr>
                 <th><?= __('Type') ?></th>
                 <th><?= __('Time') ?></th>
-                <th><?= __('Length') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
+                <th ><?= __('Length') ?></th>
+                <th class="hidden-xs actions"><?= __('Actions') ?></th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($fishingPlace->caught_fishes as $caughtFishes): ?>
+            <?php foreach ($fishingPlace->caught_fishes as $caughtFish): ?>
                 <tr>
-                    <td><?= h($caughtFishes->fish_type->name) ?></td>
-                    <td><?= h($caughtFishes->caught_time->format('Y-m-d')) ?></td>
-                    <td><?= h($caughtFishes->length) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link('', ['controller' => 'CaughtFishes', 'action' => 'view', $caughtFishes->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
+                    <td>
+                        <?= $caughtFish->has('fish_type') ? $this->Html->link($caughtFish->fish_type->name,
+                            ['controller' => 'CaughtFishes', 'action' => 'view', $caughtFish->id]) : '' ?>
+                    </td>
+                    <td><?= h($caughtFish->caught_time->format('Y-m-d')) ?></td>
+                    <td><?= h($caughtFish->length) ?></td>
+                    <td class="hidden-xs actions">
+                        <?= $this->Html->link('', ['controller' => 'CaughtFishes', 'action' => 'view', $caughtFish->id], ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

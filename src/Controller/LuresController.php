@@ -37,7 +37,7 @@ class LuresController extends AppController
     public function view($id = null)
     {
         $lure = $this->Lures->get($id, [
-            'contain' => ['LureTypes', 'CaughtFishes' => ['FishTypes']]
+            'contain' => ['LureTypes', 'CaughtFishes' => ['FishTypes', 'FishingPlaces']]
         ]);
 
         $this->set('title', $lure->name);

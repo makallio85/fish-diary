@@ -19,7 +19,7 @@ class CaughtFishNotesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['CaughtFish']
+            'contain' => ['CaughtFishes']
         ];
         $caughtFishNotes = $this->paginate($this->CaughtFishNotes);
 
@@ -27,22 +27,25 @@ class CaughtFishNotesController extends AppController
         $this->set('_serialize', ['caughtFishNotes']);
     }
 
+
     /**
      * View method
      *
      * @param string|null $id Caught Fish Note id.
+     *
      * @return \Cake\Network\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
         $caughtFishNote = $this->CaughtFishNotes->get($id, [
-            'contain' => ['CaughtFish']
+            'contain' => ['CaughtFishes']
         ]);
 
         $this->set('caughtFishNote', $caughtFishNote);
         $this->set('_serialize', ['caughtFishNote']);
     }
+
 
     /**
      * Add method
@@ -56,20 +59,29 @@ class CaughtFishNotesController extends AppController
             $caughtFishNote = $this->CaughtFishNotes->patchEntity($caughtFishNote, $this->request->getData());
             if ($this->CaughtFishNotes->save($caughtFishNote)) {
                 $this->Flash->success(__('The caught fish note has been saved.'));
+                if (!empty($this->request->getQueryParams()['redirect-to-caught-fish'])) {
+                    return $this->redirect([
+                        'controller' => 'CaughtFishes',
+                        'action'     => 'view',
+                        $this->request->getQueryParams()['redirect-to-caught-fish']
+                    ]);
+                }
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The caught fish note could not be saved. Please, try again.'));
         }
-        $caughtFish = $this->CaughtFishNotes->CaughtFish->find('list', ['limit' => 200]);
-        $this->set(compact('caughtFishNote', 'caughtFish'));
+        $caughtFishes = $this->CaughtFishNotes->CaughtFishes->find('list', ['limit' => 200]);
+        $this->set(compact('caughtFishNote', 'caughtFishes'));
         $this->set('_serialize', ['caughtFishNote']);
     }
+
 
     /**
      * Edit method
      *
      * @param string|null $id Caught Fish Note id.
+     *
      * @return \Cake\Network\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
@@ -87,15 +99,17 @@ class CaughtFishNotesController extends AppController
             }
             $this->Flash->error(__('The caught fish note could not be saved. Please, try again.'));
         }
-        $caughtFish = $this->CaughtFishNotes->CaughtFish->find('list', ['limit' => 200]);
-        $this->set(compact('caughtFishNote', 'caughtFish'));
+        $caughtFishes = $this->CaughtFishNotes->CaughtFishes->find('list', ['limit' => 200]);
+        $this->set(compact('caughtFishNote', 'caughtFishes'));
         $this->set('_serialize', ['caughtFishNote']);
     }
+
 
     /**
      * Delete method
      *
      * @param string|null $id Caught Fish Note id.
+     *
      * @return \Cake\Network\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
