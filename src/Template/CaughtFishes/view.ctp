@@ -58,23 +58,23 @@ $this->end();
         </tr>
         <tr>
             <td><?= __('Weight') ?></td>
-            <td><?= $this->Number->format($caughtFish->weight) ?></td>
+            <td><?= $caughtFish->weight ?></td>
         </tr>
         <tr>
             <td><?= __('Length') ?></td>
-            <td><?= $this->Number->format($caughtFish->length) ?></td>
+            <td><?= $caughtFish->length ?></td>
         </tr>
         <tr>
             <td><?= __('Air pressure') ?></td>
-            <td><?= $this->Number->format($caughtFish->air_pressure) ?></td>
+            <td><?= $caughtFish->air_pressure ?></td>
         </tr>
         <tr>
             <td><?= __('Air temperature') ?></td>
-            <td><?= $this->Number->format($caughtFish->air_temperature) ?></td>
+            <td><?= $caughtFish->air_temperature ?></td>
         </tr>
         <tr>
             <td><?= __('Water temperature') ?></td>
-            <td><?= $this->Number->format($caughtFish->water_temperature) ?></td>
+            <td><?= $caughtFish->water_temperature ?></td>
         </tr>
         <tr>
             <td><?= __('Time') ?></td>
@@ -94,7 +94,7 @@ $this->end();
     </div>
     <?php if (!empty($caughtFish->caught_fish_notes)): ?>
         <?php foreach ($caughtFish->caught_fish_notes as $caughtFishNotes): ?>
-            <?= h($caughtFishNotes->note) ?>
+            <p style="margin: 10px"><?= h($caughtFishNotes->created->format('Y-m-d')) ?>: <?= h($caughtFishNotes->note) ?></p>
         <?php endforeach; ?>
     <?php endif; ?>
 </div>

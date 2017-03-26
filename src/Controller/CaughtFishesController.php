@@ -59,7 +59,11 @@ class CaughtFishesController extends AppController
         $this->set('title', __('Add caught fish'));
         $caughtFish = $this->CaughtFishes->newEntity();
         if ($this->request->is('post')) {
-            $caughtFish = $this->CaughtFishes->patchEntity($caughtFish, $this->request->getData());
+            $caughtFish = $this->CaughtFishes->patchEntity($caughtFish, $this->request->getData(), [
+                'associated' => [
+                    'CaughtFishNotes'
+                ]
+            ]);
             $caughtFish->user_id = $this->Auth->user('id');
             if ($this->CaughtFishes->save($caughtFish)) {
                 $this->Flash->success(__('The caught fish has been saved.'));

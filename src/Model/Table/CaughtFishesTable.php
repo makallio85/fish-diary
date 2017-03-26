@@ -165,6 +165,9 @@ class CaughtFishesTable extends Table
         if (parent::save($entity, $options) && !empty($entity->get('photos'))) {
             $photosTable = TableRegistry::get('CaughtFishPhotos');
             foreach ($entity->get('photos') as $photo) {
+                if (empty($photo['tmp_name'])) {
+                    continue;
+                }
                 $tmp = explode('.', $photo['name']);
                 $ext = end($tmp);
                 $fileName = md5($photo['name']) . '.' . $ext;

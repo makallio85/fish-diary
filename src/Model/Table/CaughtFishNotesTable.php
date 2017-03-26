@@ -40,7 +40,7 @@ class CaughtFishNotesTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('CaughtFish', [
+        $this->belongsTo('CaughtFishes', [
             'foreignKey' => 'caught_fish_id',
             'joinType' => 'INNER'
         ]);
@@ -74,7 +74,7 @@ class CaughtFishNotesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['caught_fish_id'], 'CaughtFish'));
+        $rules->add($rules->existsIn(['caught_fish_id'], 'CaughtFishes'));
 
         return $rules;
     }

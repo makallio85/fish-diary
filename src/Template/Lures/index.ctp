@@ -10,7 +10,6 @@ $this->assign('tb_sidebar', '<ul class="nav nav-sidebar">' . $this->fetch('tb_ac
 <table class="table table-striped" cellpadding="0" cellspacing="0">
     <thead>
         <tr>
-            <th><?= $this->Paginator->sort('id'); ?></th>
             <th><?= $this->Paginator->sort('lure_type_id', 'Type'); ?></th>
             <th><?= $this->Paginator->sort('name'); ?></th>
             <th class="actions"><?= __('Actions'); ?></th>
@@ -19,7 +18,6 @@ $this->assign('tb_sidebar', '<ul class="nav nav-sidebar">' . $this->fetch('tb_ac
     <tbody>
         <?php foreach ($lures as $lure): ?>
         <tr>
-            <td><?= $this->Number->format($lure->id) ?></td>
             <td>
                 <?= $lure->has('lure_type') ? $this->Html->link($lure->lure_type->name, ['controller' => 'LureTypes', 'action' => 'view', $lure->lure_type->id]) : '' ?>
             </td>
