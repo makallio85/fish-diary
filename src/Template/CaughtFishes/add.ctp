@@ -24,7 +24,7 @@ $this->end();
     echo $this->Form->control('air_temperature');
     echo $this->Form->control('water_temperature');
     echo $this->Form->control('weather_type_id', ['options' => $weatherTypes]);
-    echo $this->Form->control('caught_fish_notes.0.note');
+    echo $this->Form->control('caught_fish_notes.0.note', ['required' => false]);
     echo $this->Form->control('photos[]', ['type' => 'file', 'multiple' => true, 'label' => 'Photos']);
 
     ?>

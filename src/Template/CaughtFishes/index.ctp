@@ -12,6 +12,8 @@ $this->assign('tb_sidebar', '<ul class="nav nav-sidebar">' . $this->fetch('tb_ac
     <tr>
         <th><?= $this->Paginator->sort('fish_type_id', __('Type')); ?></th>
         <th><?= $this->Paginator->sort('caught_time', __('Time')); ?></th>
+        <th><?= $this->Paginator->sort('fishing_place_id', __('Place')); ?></th>
+        <th><?= $this->Paginator->sort('length', __('Length')); ?></th>
         <th class="actions"><?= __('Actions'); ?></th>
     </tr>
     </thead>
@@ -23,6 +25,8 @@ $this->assign('tb_sidebar', '<ul class="nav nav-sidebar">' . $this->fetch('tb_ac
                     ['controller' => 'FishTypes', 'action' => 'view', $caughtFish->fish_type->id]) : '' ?>
             </td>
             <td><?= h($caughtFish->caught_time->format('Y-m-d')) ?></td>
+            <td><?= h($caughtFish->fishing_place->name) ?></td>
+            <td><?= h($caughtFish->length) ?></td>
             <td class="actions">
                 <?= $this->Html->link('', ['action' => 'view', $caughtFish->id],
                     ['title' => __('View'), 'class' => 'btn btn-default glyphicon glyphicon-eye-open']) ?>

@@ -39,10 +39,25 @@ class CaughtFishesController extends AppController
      */
     public function view($id = null)
     {
-        $this->set('title', __('Caught fish'));
         $caughtFish = $this->CaughtFishes->get($id, [
             'contain' => ['FishTypes', 'FishingPlaces', 'Lures', 'WeatherTypes', 'CaughtFishNotes', 'CaughtFishPhotos']
         ]);
+
+        $title = $caughtFish->fish_type->name;
+        if (!empty($caughtFish->length) || !empty($caughtFish->weight)) {
+            $title .= ' ( ';
+            if (!empty($caughtFish->length)) {
+                $title .= $caughtFish->length . 'cm';
+            }
+            if (!empty($caughtFish->weight)) {
+                if (!empty($caughtFish->length)) {
+                    $title .= ' / ';
+                }
+                $title .= $caughtFish->weight . 'kg';
+            }
+            $title .= ' ) ';
+        }
+        $this->set('title', $title);
 
         $this->set('caughtFish', $caughtFish);
         $this->set('_serialize', ['caughtFish']);

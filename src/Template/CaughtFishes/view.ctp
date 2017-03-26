@@ -37,11 +37,6 @@ $this->end();
 <div class="panel panel-default">
     <table class="table table-striped" cellpadding="0" cellspacing="0">
         <tr>
-            <td><?= __('Type') ?></td>
-            <td><?= $caughtFish->has('fish_type') ? $this->Html->link($caughtFish->fish_type->name,
-                    ['controller' => 'FishTypes', 'action' => 'view', $caughtFish->fish_type->id]) : '' ?></td>
-        </tr>
-        <tr>
             <td><?= __('Place') ?></td>
             <td><?= $caughtFish->has('fishing_place') ? $this->Html->link($caughtFish->fishing_place->name,
                     ['controller' => 'FishingPlaces', 'action' => 'view', $caughtFish->fishing_place->id]) : '' ?></td>
@@ -55,14 +50,6 @@ $this->end();
             <td><?= __('Weather Type') ?></td>
             <td><?= $caughtFish->has('weather_type') ? $this->Html->link($caughtFish->weather_type->name,
                     ['controller' => 'WeatherTypes', 'action' => 'view', $caughtFish->weather_type->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Weight') ?></td>
-            <td><?= $caughtFish->weight ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Length') ?></td>
-            <td><?= $caughtFish->length ?></td>
         </tr>
         <tr>
             <td><?= __('Air pressure') ?></td>
